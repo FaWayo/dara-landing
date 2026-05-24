@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 const steps = [
   {
@@ -9,28 +10,38 @@ const steps = [
     title: "Upload your wardrobe",
     body: "Your clothes, tagged and organised. Everything you own, finally visible.",
     reversed: false,
+    imageSrc: "/images/how-it-works/step-01.png",
   },
   {
     number: "02",
     title: "Bridge the inspiration gap",
     body: "Connect your Pinterest boards. Weara matches what you saved to pieces you own \u2014 or sellers near you. No more saving outfits you can never recreate.",
     reversed: true,
+    imageSrc: "/images/how-it-works/step-02.png",
   },
   {
     number: "03",
     title: "Meet your style avatar",
     body: "A virtual figure styled to your body, skin tone, and hair. See the outfit on you before you leave the house.",
     reversed: false,
+    imageSrc: "/images/how-it-works/step-03.png",
   },
   {
     number: "04",
     title: "Discover sellers the algorithm hides",
     body: "Thrift pieces from Accra markets and African brand drops shown inside your outfit suggestion \u2014 not buried under accounts with bigger followings.",
     reversed: true,
+    imageSrc: "/images/how-it-works/step-04.png",
   },
 ];
 
-function Step({ step, index }: { step: (typeof steps)[number]; index: number }) {
+function Step({
+  step,
+  index,
+}: {
+  step: (typeof steps)[number];
+  index: number;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-15%" });
 
@@ -41,10 +52,19 @@ function Step({ step, index }: { step: (typeof steps)[number]; index: number }) 
       transition={{ delay: 0.15, duration: 0.5, ease: "easeOut" }}
       className={step.reversed ? "md:order-1" : "md:order-2"}
     >
-      <div className="w-full aspect-[4/5] md:aspect-[3/4] bg-ink-mid rounded-2xl border border-warm/[0.05] hover:border-opacity-20 transition-all duration-500 flex items-center justify-center overflow-hidden relative">
-        <span className="font-sans text-xs tracking-widest uppercase text-muted opacity-20">
-          Visual coming soon
-        </span>
+      <div
+        className="w-full overflow-hidden"
+        style={{
+          position: "relative",
+          aspectRatio: "4/5",
+          maxWidth: "420px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          borderRadius: "16px",
+          border: "1px solid rgba(250,247,242,0.06)",
+        }}
+      >
+        <Image src={step.imageSrc} alt="" fill sizes="(max-width: 768px) 100vw, 420px" style={{ objectFit: "cover" }} />
       </div>
     </motion.div>
   );
@@ -56,7 +76,8 @@ function Step({ step, index }: { step: (typeof steps)[number]; index: number }) 
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={step.reversed ? "md:order-2" : "md:order-1"}
     >
-      <span className="font-sans tracking-[0.2em] text-red opacity-70 mb-4 block"
+      <span
+        className="font-sans tracking-[0.2em] text-red opacity-70 mb-4 block"
         style={{ fontSize: "12px" }}
       >
         {step.number}
@@ -95,7 +116,10 @@ function Step({ step, index }: { step: (typeof steps)[number]; index: number }) 
   );
 
   return (
-    <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16 py-16 md:py-20 border-t border-warm/[0.08]">
+    <div
+      ref={ref}
+      className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16 py-16 md:py-20 border-t border-warm/[0.08]"
+    >
       {image}
       {content}
     </div>

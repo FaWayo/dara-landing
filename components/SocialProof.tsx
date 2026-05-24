@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 function CountUp({ to, delay }: { to: string; delay: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -168,6 +169,34 @@ export default function SocialProof() {
             delay={0.2}
           />
         </motion.div>
+
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            aspectRatio: "21/9",
+            borderRadius: "16px",
+            overflow: "hidden",
+            marginTop: "48px",
+            marginBottom: "48px",
+          }}
+        >
+          <Image
+            src="/images/social-proof/atmosphere.png"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 100vw, 90vw"
+            style={{ objectFit: "cover", objectPosition: "center 30%" }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to bottom, transparent 40%, #E8E0D5 100%)",
+            }}
+          />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}

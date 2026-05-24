@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import BuyerProblem from "@/components/BuyerProblem";
 import HowItWorks from "@/components/HowItWorks";
 import SellerSection from "@/components/SellerSection";
-import WaitlistSignup from "@/components/WaitlistSignup";
+import Waitlist from "@/components/Waitlist";
 import SocialProof from "@/components/SocialProof";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -14,7 +14,7 @@ export default function Home() {
       <BuyerProblem />
       <HowItWorks />
       <SellerSection />
-      <WaitlistSignup />
+      <Waitlist />
       <SocialProof />
       <FAQ />
       <Footer />

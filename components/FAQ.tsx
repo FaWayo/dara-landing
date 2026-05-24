@@ -178,10 +178,17 @@ export default function FAQ() {
             Still have questions?
           </p>
           <a
-            href="mailto:hello@weara.co"
+            href="mailto:fatimah.wayo@meltwater.org?cc=roddiyyat.nasirudeen@meltwater.org"
             className="font-sans text-muted hover:text-warm mt-2 inline-block text-sm tracking-wide underline underline-offset-4 transition-colors duration-200"
           >
-            hello@weara.co
+            fatimah.wayo@meltwater.org
+          </a>
+          <span className="font-sans text-muted/40 mx-2 text-sm" aria-hidden="true">/</span>
+          <a
+            href="mailto:fatimah.wayo@meltwater.org?cc=roddiyyat.nasirudeen@meltwater.org"
+            className="font-sans text-muted hover:text-warm inline-block text-sm tracking-wide underline underline-offset-4 transition-colors duration-200"
+          >
+            roddiyyat.nasirudeen@meltwater.org
           </a>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 const thriftPromises = [
   "We photograph and list your pieces for you",
@@ -22,7 +23,11 @@ const promiseItem = {
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: 0.3 + i * 0.08, duration: 0.4, ease: "easeOut" as const },
+    transition: {
+      delay: 0.3 + i * 0.08,
+      duration: 0.4,
+      ease: "easeOut" as const,
+    },
   }),
 };
 
@@ -155,6 +160,25 @@ export default function SellerSection() {
               FOR THRIFT SELLERS
             </span>
 
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "16/9",
+                borderRadius: "12px",
+                overflow: "hidden",
+                marginBottom: "24px",
+              }}
+            >
+              <Image
+                src="/images/sellers/thrift.png"
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+
             <h3
               className="text-warm max-w-sm mb-8"
               style={{
@@ -196,6 +220,25 @@ export default function SellerSection() {
               FOR AFRICAN FASHION BRANDS
             </span>
 
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "16/9",
+                borderRadius: "12px",
+                overflow: "hidden",
+                marginBottom: "24px",
+              }}
+            >
+              <Image
+                src="/images/sellers/brand.png"
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+
             <h3
               className="text-warm max-w-sm mb-8"
               style={{
@@ -209,7 +252,6 @@ export default function SellerSection() {
               <br />
               You have the aesthetic.
               <br />
-              New customers are just {"\u2014"} expensive.
             </h3>
 
             <PromiseList items={brandPromises} />
@@ -230,8 +272,10 @@ export default function SellerSection() {
           transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
           className="border-t border-warm/[0.08] mt-16 pt-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8"
         >
-          <p className="font-serif italic text-warm opacity-70 max-w-sm"
-            style={{ fontSize: "clamp(20px, 2vw, 28px)" }}>
+          <p
+            className="font-serif italic text-warm opacity-70 max-w-sm"
+            style={{ fontSize: "clamp(20px, 2vw, 28px)" }}
+          >
             Ready to reach the women already looking for what you sell?
           </p>
           <button className="bg-red hover:bg-crimson text-warm font-sans font-semibold text-base px-8 py-4 rounded-full transition-colors duration-200 shadow-lg shrink-0 w-full md:w-auto">

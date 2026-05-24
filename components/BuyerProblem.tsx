@@ -2,35 +2,49 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 const beats = [
   {
     number: "01",
     statement: "The inspiration never makes it home.",
-    support: "You save it on Pinterest. You open your wardrobe. The gap between the two is just \u2014 there.",
+    support:
+      "You save it on Pinterest. You open your wardrobe. The gap between the two is just \u2014 there.",
     reversed: false,
+    imageSrc: "/images/problem/beat-01.png",
   },
   {
     number: "02",
     statement: "The algorithm buried her.",
-    support: "The seller with exactly what you wanted had 300 followers. You never saw her.",
+    support:
+      "The seller with exactly what you wanted had 300 followers. You never saw her.",
     reversed: true,
+    imageSrc: "/images/problem/beat-02.png",
   },
   {
     number: "03",
     statement: "You found it. Then it vanished.",
-    support: "24 hours. Story gone. Contact lost somewhere in your camera roll.",
+    support:
+      "24 hours. Story gone. Contact lost somewhere in your camera roll.",
     reversed: false,
+    imageSrc: "/images/problem/beat-03.png",
   },
 ];
 
-function Beat({ beat, index }: { beat: (typeof beats)[number]; index: number }) {
+function Beat({
+  beat,
+  index,
+}: {
+  beat: (typeof beats)[number];
+  index: number;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-15%" });
 
   const content = (
     <div>
-      <span className="font-sans tracking-[0.2em] text-red opacity-70 mb-4 block"
+      <span
+        className="font-sans tracking-[0.2em] text-red opacity-70 mb-4 block"
         style={{ fontSize: "12px" }}
       >
         {beat.number}
@@ -65,9 +79,42 @@ function Beat({ beat, index }: { beat: (typeof beats)[number]; index: number }) 
     </div>
   );
 
+  const imageBlock = (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: 0.15, duration: 0.5, ease: "easeOut" }}
+      className="w-full"
+    >
+      <div
+        className="w-full overflow-hidden md:aspect-[4/5]"
+        style={{
+          position: "relative",
+          aspectRatio: "16/9",
+          borderRadius: "16px",
+        }}
+      >
+        <Image src={beat.imageSrc} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: "cover" }} />
+      </div>
+    </motion.div>
+  );
+
   return (
-    <div ref={ref} className="py-16 md:py-20 border-t border-ink/[0.08]">
-      {content}
+    <div
+      ref={ref}
+      className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 py-16 md:py-20 border-t border-ink/[0.08]"
+    >
+      {beat.reversed ? (
+        <>
+          <div className="md:order-1">{imageBlock}</div>
+          <div className="md:order-2">{content}</div>
+        </>
+      ) : (
+        <>
+          <div className="md:order-2">{imageBlock}</div>
+          <div className="md:order-1">{content}</div>
+        </>
+      )}
     </div>
   );
 }
@@ -135,16 +182,20 @@ export default function BuyerProblem() {
             className="flex whitespace-nowrap absolute"
           >
             <span className="font-sans text-xs tracking-[0.3em] uppercase text-ink opacity-20 inline-block pr-4">
-              wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery {"\u00B7"}{" "}
+              wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery{" "}
+              {"\u00B7"}{" "}
             </span>
             <span className="font-sans text-xs tracking-[0.3em] uppercase text-ink opacity-20 inline-block pr-4">
-              wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery {"\u00B7"}{" "}
+              wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery{" "}
+              {"\u00B7"}{" "}
             </span>
             <span className="font-sans text-xs tracking-[0.3em] uppercase text-ink opacity-20 inline-block pr-4">
-              wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery {"\u00B7"}{" "}
+              wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery{" "}
+              {"\u00B7"}{" "}
             </span>
             <span className="font-sans text-xs tracking-[0.3em] uppercase text-ink opacity-20 inline-block pr-4">
-              wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery {"\u00B7"}{" "}
+              wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery{" "}
+              {"\u00B7"}{" "}
             </span>
           </motion.div>
         </div>
