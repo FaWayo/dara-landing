@@ -30,14 +30,22 @@ function Beat({ beat, index }: { beat: (typeof beats)[number]; index: number }) 
 
   const content = (
     <div>
-      <span className="font-sans text-xs tracking-widest text-red opacity-70 mb-4 block">
+      <span className="font-sans tracking-[0.2em] text-red opacity-70 mb-4 block"
+        style={{ fontSize: "12px" }}
+      >
         {beat.number}
       </span>
       <motion.h3
         initial={{ opacity: 0, x: beat.reversed ? 16 : -16 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="font-serif text-4xl md:text-6xl text-ghost leading-tight max-w-lg"
+        className="text-ink max-w-lg"
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "clamp(36px, 5vw, 72px)",
+          fontWeight: 400,
+          lineHeight: 1.1,
+        }}
       >
         {beat.statement}
       </motion.h3>
@@ -45,34 +53,21 @@ function Beat({ beat, index }: { beat: (typeof beats)[number]; index: number }) 
         initial={{ opacity: 0, y: 8 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.25, duration: 0.5, ease: "easeOut" }}
-        className="font-sans text-base md:text-lg text-cadet leading-relaxed max-w-sm mt-4"
+        className="font-sans text-[#4A4A5A] mt-4"
+        style={{
+          fontSize: "clamp(16px, 1.4vw, 20px)",
+          lineHeight: 1.7,
+          maxWidth: "480px",
+        }}
       >
         {beat.support}
       </motion.p>
     </div>
   );
 
-  const numberCol = (
-    <div className="hidden md:block overflow-hidden pointer-events-none select-none">
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 0.03 } : {}}
-        transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-        className={`font-serif text-[20vw] leading-none text-ghost opacity-[0.03] block ${beat.reversed ? "" : "text-right"}`}
-      >
-        {beat.number}
-      </motion.span>
-    </div>
-  );
-
-  const gridClass = beat.reversed
-    ? "grid grid-cols-1 md:grid-cols-[auto_1fr] items-end gap-8 py-16 md:py-20 border-t border-ghost border-opacity-[0.08]"
-    : "grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-8 py-16 md:py-20 border-t border-ghost border-opacity-[0.08]";
-
   return (
-    <div ref={ref} className={gridClass}>
-      {beat.reversed ? numberCol : content}
-      {beat.reversed ? content : numberCol}
+    <div ref={ref} className="py-16 md:py-20 border-t border-ink/[0.08]">
+      {content}
     </div>
   );
 }
@@ -82,7 +77,7 @@ export default function BuyerProblem() {
   const openerInView = useInView(openerRef, { once: true });
 
   return (
-    <section className="bg-[#1e2030] py-24 md:py-32">
+    <section className="bg-[#E8E0D5] py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div ref={openerRef} className="mb-20 md:mb-28">
           <motion.span
@@ -98,16 +93,28 @@ export default function BuyerProblem() {
             initial={{ opacity: 0, y: 16 }}
             animate={openerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
-            className="font-serif text-5xl md:text-7xl text-ghost leading-none max-w-2xl"
+            className="text-ink max-w-2xl"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(48px, 6vw, 88px)",
+              fontWeight: 400,
+              lineHeight: 1,
+            }}
           >
             You have a full wardrobe.
           </motion.h2>
 
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
-            animate={openerInView ? { opacity: 0.4, y: 0 } : {}}
+            animate={openerInView ? { opacity: 0.45, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-            className="font-serif text-5xl md:text-7xl text-ghost opacity-40 leading-none"
+            className="text-ink/45"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(48px, 6vw, 88px)",
+              fontWeight: 400,
+              lineHeight: 1,
+            }}
           >
             You still have nothing to wear.
           </motion.h2>
@@ -127,16 +134,16 @@ export default function BuyerProblem() {
             transition={{ duration: 30, ease: "linear", repeat: Infinity }}
             className="flex whitespace-nowrap absolute"
           >
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+            <span className="font-sans text-xs tracking-[0.3em] uppercase text-ink opacity-20 inline-block pr-4">
               wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery {"\u00B7"}{" "}
             </span>
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+            <span className="font-sans text-xs tracking-[0.3em] uppercase text-ink opacity-20 inline-block pr-4">
               wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery {"\u00B7"}{" "}
             </span>
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+            <span className="font-sans text-xs tracking-[0.3em] uppercase text-ink opacity-20 inline-block pr-4">
               wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery {"\u00B7"}{" "}
             </span>
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+            <span className="font-sans text-xs tracking-[0.3em] uppercase text-ink opacity-20 inline-block pr-4">
               wardrobe {"\u00B7"} inspiration {"\u00B7"} discovery {"\u00B7"}{" "}
             </span>
           </motion.div>

@@ -37,7 +37,11 @@ function PromiseList({ items }: { items: string[] }) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="font-sans text-base text-cadet leading-loose flex items-center gap-3"
+          className="font-sans text-muted flex items-center gap-3"
+          style={{
+            fontSize: "clamp(14px, 1.2vw, 17px)",
+            lineHeight: 1.8,
+          }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-red shrink-0" />
           {item}
@@ -61,7 +65,7 @@ export default function SellerSection() {
   const ctaInView = useInView(ctaRef, { once: true });
 
   return (
-    <section className="bg-[#12131f] py-24 md:py-32">
+    <section className="bg-ink-mid py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div ref={openerRef}>
           <motion.span
@@ -77,7 +81,13 @@ export default function SellerSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={openerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
-            className="font-serif text-5xl md:text-7xl text-ghost leading-none"
+            className="text-warm leading-none"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(44px, 5.5vw, 80px)",
+              fontWeight: 400,
+              lineHeight: 1,
+            }}
           >
             Your best pieces deserve
           </motion.h2>
@@ -86,7 +96,13 @@ export default function SellerSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={openerInView ? { opacity: 0.4, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-            className="font-serif text-5xl md:text-7xl text-ghost opacity-40 leading-none"
+            className="text-warm opacity-40 leading-none"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(44px, 5.5vw, 80px)",
+              fontWeight: 400,
+              lineHeight: 1,
+            }}
           >
             more than 24 hours.
           </motion.h2>
@@ -105,35 +121,49 @@ export default function SellerSection() {
               transition={{ duration: 30, ease: "linear", repeat: Infinity }}
               className="flex whitespace-nowrap absolute"
             >
-              <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+              <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted opacity-20 inline-block pr-4">
                 persistent {"\u00B7"} visible {"\u00B7"} paid {"\u00B7"}{" "}
               </span>
-              <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+              <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted opacity-20 inline-block pr-4">
                 persistent {"\u00B7"} visible {"\u00B7"} paid {"\u00B7"}{" "}
               </span>
-              <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+              <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted opacity-20 inline-block pr-4">
                 persistent {"\u00B7"} visible {"\u00B7"} paid {"\u00B7"}{" "}
               </span>
-              <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+              <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted opacity-20 inline-block pr-4">
                 persistent {"\u00B7"} visible {"\u00B7"} paid {"\u00B7"}{" "}
               </span>
             </motion.div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 border-t border-white/[0.08]">
+        <div className="grid grid-cols-1 md:grid-cols-2 border-t border-warm/[0.08]">
           <motion.div
             ref={leftRef}
             initial={{ opacity: 0, x: -16 }}
             animate={leftInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="pt-16 pb-12 md:pr-16 border-b md:border-b-0 md:border-r border-white/[0.08]"
+            className="pt-16 pb-12 md:pr-16 border-b md:border-b-0 md:border-r border-warm/[0.08]"
           >
-            <span className="font-sans text-xs tracking-[0.2em] uppercase text-cadet opacity-50 mb-8 block">
+            <span
+              className="font-sans text-muted opacity-50 uppercase mb-8 block"
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.2em",
+              }}
+            >
               FOR THRIFT SELLERS
             </span>
 
-            <h3 className="font-serif text-3xl md:text-4xl text-ghost leading-tight max-w-sm mb-8">
+            <h3
+              className="text-warm max-w-sm mb-8"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(24px, 2.5vw, 38px)",
+                fontWeight: 400,
+                lineHeight: 1.3,
+              }}
+            >
               You post. It disappears.
               <br />
               The customer who would have bought it never saw it.
@@ -156,11 +186,25 @@ export default function SellerSection() {
             transition={{ delay: 0.15, duration: 0.6, ease: "easeOut" }}
             className="pt-16 pb-12 md:pl-16"
           >
-            <span className="font-sans text-xs tracking-[0.2em] uppercase text-cadet opacity-50 mb-8 block">
+            <span
+              className="font-sans text-muted opacity-50 uppercase mb-8 block"
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.2em",
+              }}
+            >
               FOR AFRICAN FASHION BRANDS
             </span>
 
-            <h3 className="font-serif text-3xl md:text-4xl text-ghost leading-tight max-w-sm mb-8">
+            <h3
+              className="text-warm max-w-sm mb-8"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(24px, 2.5vw, 38px)",
+                fontWeight: 400,
+                lineHeight: 1.3,
+              }}
+            >
               You have the inventory.
               <br />
               You have the aesthetic.
@@ -184,12 +228,13 @@ export default function SellerSection() {
           initial={{ opacity: 0 }}
           animate={ctaInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-          className="border-t border-white/[0.08] mt-16 pt-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8"
+          className="border-t border-warm/[0.08] mt-16 pt-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8"
         >
-          <p className="font-serif italic text-xl md:text-2xl text-ghost opacity-70 max-w-sm">
+          <p className="font-serif italic text-warm opacity-70 max-w-sm"
+            style={{ fontSize: "clamp(20px, 2vw, 28px)" }}>
             Ready to reach the women already looking for what you sell?
           </p>
-          <button className="bg-red hover:bg-crimson text-ghost font-sans font-semibold text-base px-8 py-4 rounded-full transition-colors duration-200 shadow-lg shrink-0 w-full md:w-auto">
+          <button className="bg-red hover:bg-crimson text-warm font-sans font-semibold text-base px-8 py-4 rounded-full transition-colors duration-200 shadow-lg shrink-0 w-full md:w-auto">
             List your pieces {"\u2192"}
           </button>
         </motion.div>

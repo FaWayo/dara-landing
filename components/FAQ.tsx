@@ -52,7 +52,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="bg-[#1e2030] py-24 md:py-32">
+    <section className="bg-ink py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <motion.span
           initial={{ opacity: 0, y: 16 }}
@@ -69,7 +69,13 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-serif text-ghost text-5xl leading-none md:text-7xl"
+          className="text-warm"
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(44px, 5.5vw, 80px)",
+            fontWeight: 400,
+            lineHeight: 1,
+          }}
         >
           Good questions
         </motion.p>
@@ -79,7 +85,13 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          className="font-serif text-ghost/40 text-5xl leading-none md:text-7xl"
+          className="text-warm/40"
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(44px, 5.5vw, 80px)",
+            fontWeight: 400,
+            lineHeight: 1,
+          }}
         >
           deserve honest answers.
         </motion.p>
@@ -97,7 +109,7 @@ export default function FAQ() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={stagger}
-          className="border-t border-ghost/[0.08]"
+          className="border-t border-warm/[0.08]"
         >
           {ITEMS.map((item, i) => {
             const isOpen = openIndex === i;
@@ -106,16 +118,25 @@ export default function FAQ() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="border-b border-ghost/[0.08]"
+                className="border-b border-warm/[0.08]"
               >
                 <button
                   onClick={() => toggle(i)}
                   className="group flex w-full cursor-pointer items-center justify-between py-6 text-left"
                 >
-                  <span className="font-serif text-ghost text-xl transition-opacity duration-200 group-hover:opacity-70 md:text-2xl">
+                  <span
+                    className={`transition-all duration-200 ${
+                      isOpen ? "text-warm" : "text-warm/60 group-hover:text-warm/80"
+                    }`}
+                    style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "clamp(18px, 1.8vw, 26px)",
+                      fontWeight: 400,
+                    }}
+                  >
                     {item.Q}
                   </span>
-                  <span className="font-sans text-cadet text-2xl font-light transition-transform duration-300">
+                  <span className="font-sans text-muted text-2xl font-light transition-transform duration-300">
                     {isOpen ? "\u2212" : "+"}
                   </span>
                 </button>
@@ -129,7 +150,13 @@ export default function FAQ() {
                       transition={{ duration: 0.35, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="font-sans text-cadet max-w-2xl pb-6 pt-2 text-base leading-relaxed md:text-lg">
+                      <p
+                        className="font-sans text-muted max-w-2xl pb-6 pt-2"
+                        style={{
+                          fontSize: "clamp(15px, 1.3vw, 18px)",
+                          lineHeight: 1.7,
+                        }}
+                      >
                         {item.A}
                       </p>
                     </motion.div>
@@ -140,13 +167,19 @@ export default function FAQ() {
           })}
         </motion.div>
 
-        <div className="border-t border-ghost/[0.08] pt-12 mt-8">
-          <p className="font-serif text-ghost/50 text-xl italic md:text-2xl">
+        <div className="border-t border-warm/[0.08] pt-12 mt-8">
+          <p
+            className="text-warm/50 italic"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(20px, 2vw, 28px)",
+            }}
+          >
             Still have questions?
           </p>
           <a
             href="mailto:hello@weara.co"
-            className="font-sans text-cadet hover:text-ghost mt-2 inline-block text-sm tracking-wide underline underline-offset-4 transition-colors duration-200"
+            className="font-sans text-muted hover:text-warm mt-2 inline-block text-sm tracking-wide underline underline-offset-4 transition-colors duration-200"
           >
             hello@weara.co
           </a>

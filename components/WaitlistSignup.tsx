@@ -38,7 +38,7 @@ export default function WaitlistSignup() {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
 
   return (
-    <section className="bg-[#2B2D42] py-24 md:py-32">
+    <section className="bg-red py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
         <div className="max-w-5xl mx-auto">
           <div className="max-w-3xl">
@@ -47,7 +47,13 @@ export default function WaitlistSignup() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="font-serif text-5xl md:text-7xl text-ghost leading-[0.95] tracking-tight mb-6"
+              className="text-warm tracking-tight mb-6"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(48px, 7vw, 96px)",
+                fontWeight: 400,
+                lineHeight: 1,
+              }}
             >
               Dress differently.
             </motion.h2>
@@ -57,7 +63,11 @@ export default function WaitlistSignup() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
-              className="font-sans text-base md:text-lg text-cadet max-w-xl leading-relaxed mb-10"
+              className="font-sans text-warm opacity-80 max-w-xl mb-10"
+              style={{
+                fontSize: "clamp(16px, 1.5vw, 20px)",
+                lineHeight: 1.6,
+              }}
             >
               Launching first in Accra.
               <br />
@@ -71,7 +81,7 @@ export default function WaitlistSignup() {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <p className="font-sans text-xs tracking-widest text-cadet opacity-60 uppercase mb-4">
+            <p className="font-sans text-xs tracking-widest text-warm/60 uppercase mb-4">
               Who are you?
             </p>
 
@@ -82,8 +92,8 @@ export default function WaitlistSignup() {
                   onClick={() => setSelectedRole(role.value)}
                   className={`font-sans text-sm px-5 py-2.5 rounded-full border transition-all duration-200 ${
                     selectedRole === role.value
-                      ? "border-red text-ghost bg-red/10"
-                      : "border-cadet/30 text-cadet hover:border-cadet/60 hover:text-ghost"
+                      ? "border-warm text-warm bg-warm/10"
+                      : "border-warm/30 text-warm/70 hover:border-warm/60 hover:text-warm"
                   }`}
                 >
                   {role.label}
@@ -95,9 +105,18 @@ export default function WaitlistSignup() {
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 bg-transparent border border-cadet/30 focus:border-ghost text-ghost font-sans text-sm px-5 py-3 rounded-full outline-none transition-colors placeholder:text-cadet/40"
+                className="flex-1 bg-transparent border border-warm/40 focus:border-warm text-warm font-sans px-5 py-3 rounded-full outline-none transition-colors placeholder:text-warm/50"
+                style={{
+                  fontSize: "16px",
+                }}
               />
-              <button className="bg-red hover:bg-crimson text-ghost font-sans font-semibold text-sm px-6 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shrink-0">
+              <button
+                className="bg-warm hover:opacity-90 text-red font-sans font-semibold px-6 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shrink-0"
+                style={{
+                  fontSize: "16px",
+                  fontWeight: 600,
+                }}
+              >
                 Join Early Access {"\u2192"}
               </button>
             </div>
@@ -120,12 +139,12 @@ export default function WaitlistSignup() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   whileHover={{ y: -4 }}
-                  className="border border-ghost/10 rounded-xl p-5 transition-all duration-200"
+                  className="border border-warm/10 rounded-xl p-5 transition-all duration-200"
                 >
-                  <span className="font-sans text-xs tracking-widest text-red uppercase mb-2 block">
+                  <span className="font-sans text-xs tracking-widest text-warm uppercase mb-2 block">
                     {card.tag}
                   </span>
-                  <p className="font-sans text-sm text-cadet leading-relaxed">
+                  <p className="font-sans text-sm text-warm/70 leading-relaxed">
                     {card.text}
                   </p>
                 </motion.div>
@@ -140,13 +159,13 @@ export default function WaitlistSignup() {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="mt-12 flex flex-wrap gap-x-8 gap-y-2"
           >
-            <span className="font-sans text-xs tracking-widest uppercase text-cadet/50">
+            <span className="font-sans text-xs tracking-widest uppercase text-warm/50">
               Launching in Accra first
             </span>
-            <span className="font-sans text-xs tracking-widest uppercase text-cadet/50">
+            <span className="font-sans text-xs tracking-widest uppercase text-warm/50">
               Limited onboarding
             </span>
-            <span className="font-sans text-xs tracking-widest uppercase text-cadet/50">
+            <span className="font-sans text-xs tracking-widest uppercase text-warm/50">
               Early members shape features
             </span>
           </motion.div>

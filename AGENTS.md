@@ -119,26 +119,40 @@ Primary segments for this landing page:
 - Emerging African DTC brand (seller secondary)
 
 ---
-
 ## Color Palette (Tailwind token names)
 
-| Token    | Hex     | Role                                    |
-|----------|---------|-----------------------------------------|
-| space    | #2B2D42 | Primary background — dominant dark tone |
-| cadet    | #8D99AE | Secondary text, labels, metadata        |
-| ghost    | #EDF2F4 | Primary text on dark backgrounds        |
-| red      | #EF233C | CTAs only — never decorative            |
-| crimson  | #D90429 | CTA hover and active state              |
+| Token     | Hex     | Role                                      |
+|-----------|---------|-------------------------------------------|
+| ink       | #212130 | Primary dark background                   |
+| ink-mid   | #3D3D55 | Secondary dark background                 |
+| warm      | #FAF7F2 | Light section background + text on dark   |
+| red       | #EF233C | CTAs only — never decorative              |
+| crimson   | #D90429 | CTA hover state                           |
+| muted     | #8D8FA8 | Secondary text on both dark and light     |
 
-Rules:
-- space (#2B2D42) is the dominant background on every section
-- ghost (#EDF2F4) is all primary text on dark
-- red (#EF233C) is used ONLY for CTAs and key action moments
-- crimson (#D90429) is hover/active state for red elements only
-- cadet (#8D99AE) for secondary text, labels, metadata
-- No gradient blobs. No glassmorphism overuse.
-- Red is earned. Maximum once per section.
+## Section backgrounds
+Hero          → bg-ink
+BuyerProblem  → bg-warm (LIGHT section)
+HowItWorks    → bg-ink
+SellerSection → bg-ink-mid
+WaitlistSignup→ bg-red (full red)
+SocialProof   → bg-warm (LIGHT section)
+FAQ           → bg-ink
+Footer        → bg-ink-mid
 
+## Light section rules
+On bg-warm sections (BuyerProblem, SocialProof):
+- Headline text: text-ink (#212130)
+- Body text: text-muted (#8D8FA8)
+- Red label tags: text-red (stays red)
+- Red line accent: bg-red (stays red)
+- Borders: border-ink border-opacity-[0.08]
+- Marquee text: text-ink opacity-20
+
+On bg-ink / bg-ink-mid sections (everything else):
+- Headline text: text-warm (#FAF7F2)
+- Body text: text-muted (#8D8FA8)
+- Same red labels and red lines
 ---
 
 ## Typography

@@ -41,8 +41,8 @@ function Step({ step, index }: { step: (typeof steps)[number]; index: number }) 
       transition={{ delay: 0.15, duration: 0.5, ease: "easeOut" }}
       className={step.reversed ? "md:order-1" : "md:order-2"}
     >
-      <div className="w-full aspect-[4/5] md:aspect-[3/4] bg-[#1e2030] rounded-2xl border border-ghost border-opacity-[0.05] hover:border-opacity-20 transition-all duration-500 flex items-center justify-center overflow-hidden relative">
-        <span className="font-sans text-xs tracking-widest uppercase text-cadet opacity-20">
+      <div className="w-full aspect-[4/5] md:aspect-[3/4] bg-ink-mid rounded-2xl border border-warm/[0.05] hover:border-opacity-20 transition-all duration-500 flex items-center justify-center overflow-hidden relative">
+        <span className="font-sans text-xs tracking-widest uppercase text-muted opacity-20">
           Visual coming soon
         </span>
       </div>
@@ -56,17 +56,32 @@ function Step({ step, index }: { step: (typeof steps)[number]; index: number }) 
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={step.reversed ? "md:order-2" : "md:order-1"}
     >
-      <span className="font-sans text-xs tracking-widest text-red opacity-70 mb-4 block">
+      <span className="font-sans tracking-[0.2em] text-red opacity-70 mb-4 block"
+        style={{ fontSize: "12px" }}
+      >
         {step.number}
       </span>
-      <h3 className="font-serif text-4xl md:text-6xl text-ghost leading-tight max-w-lg">
+      <h3
+        className="text-warm max-w-lg"
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "clamp(28px, 3vw, 48px)",
+          fontWeight: 400,
+          lineHeight: 1.1,
+        }}
+      >
         {step.title}
       </h3>
       <motion.p
         initial={{ opacity: 0, y: 8 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.25, duration: 0.5, ease: "easeOut" }}
-        className="font-sans text-base md:text-lg text-cadet leading-relaxed max-w-sm mt-4"
+        className="font-sans text-muted mt-4"
+        style={{
+          fontSize: "clamp(15px, 1.3vw, 18px)",
+          lineHeight: 1.7,
+          maxWidth: "28rem",
+        }}
       >
         {step.body}
       </motion.p>
@@ -80,7 +95,7 @@ function Step({ step, index }: { step: (typeof steps)[number]; index: number }) 
   );
 
   return (
-    <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16 py-16 md:py-20 border-t border-ghost border-opacity-[0.08]">
+    <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16 py-16 md:py-20 border-t border-warm/[0.08]">
       {image}
       {content}
     </div>
@@ -92,7 +107,7 @@ export default function HowItWorks() {
   const openerInView = useInView(openerRef, { once: true });
 
   return (
-    <section className="bg-[#2B2D42] py-24 md:py-32">
+    <section className="bg-ink py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div ref={openerRef} className="mb-20 md:mb-28">
           <motion.span
@@ -109,7 +124,13 @@ export default function HowItWorks() {
               initial={{ opacity: 0, y: 16 }}
               animate={openerInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
-              className="font-serif italic text-4xl md:text-6xl text-ghost leading-tight"
+              className="text-warm italic"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(40px, 5vw, 72px)",
+                fontWeight: 400,
+                lineHeight: 1.1,
+              }}
             >
               What if getting dressed felt like this?
             </motion.h2>
@@ -120,13 +141,34 @@ export default function HowItWorks() {
               transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
               className="hidden md:block text-right"
             >
-              <span className="font-sans text-sm tracking-[0.15em] uppercase text-cadet opacity-60 leading-loose block">
+              <span
+                className="font-sans text-muted opacity-60 uppercase block"
+                style={{
+                  fontSize: "13px",
+                  letterSpacing: "0.2em",
+                  lineHeight: 2,
+                }}
+              >
                 Upload.
               </span>
-              <span className="font-sans text-sm tracking-[0.15em] uppercase text-cadet opacity-60 leading-loose block">
+              <span
+                className="font-sans text-muted opacity-60 uppercase block"
+                style={{
+                  fontSize: "13px",
+                  letterSpacing: "0.2em",
+                  lineHeight: 2,
+                }}
+              >
                 Style.
               </span>
-              <span className="font-sans text-sm tracking-[0.15em] uppercase text-cadet opacity-60 leading-loose block">
+              <span
+                className="font-sans text-muted opacity-60 uppercase block"
+                style={{
+                  fontSize: "13px",
+                  letterSpacing: "0.2em",
+                  lineHeight: 2,
+                }}
+              >
                 Discover.
               </span>
             </motion.div>
@@ -147,16 +189,16 @@ export default function HowItWorks() {
             transition={{ duration: 30, ease: "linear", repeat: Infinity }}
             className="flex whitespace-nowrap absolute"
           >
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+            <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted opacity-20 inline-block pr-4">
               upload {"\u00B7"} style {"\u00B7"} discover {"\u00B7"}{" "}
             </span>
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+            <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted opacity-20 inline-block pr-4">
               upload {"\u00B7"} style {"\u00B7"} discover {"\u00B7"}{" "}
             </span>
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+            <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted opacity-20 inline-block pr-4">
               upload {"\u00B7"} style {"\u00B7"} discover {"\u00B7"}{" "}
             </span>
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-cadet opacity-20 inline-block pr-4">
+            <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted opacity-20 inline-block pr-4">
               upload {"\u00B7"} style {"\u00B7"} discover {"\u00B7"}{" "}
             </span>
           </motion.div>

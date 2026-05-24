@@ -6,86 +6,122 @@ const cards = [
   {
     id: 1,
     label: "LOOK 01",
-    name: "Vintage wrap dress",
+    labelSize: "48px",
+    item: "Vintage wrap dress",
     price: "\u00B585",
-    size: "w-36 md:w-44",
-    style: { top: "10%", left: "4%" },
+    topColor: "#3D2B3D",
+    width: "140px",
+    style: { top: "8%", left: "3%" },
     rotate: -8,
-    delay: 0.5,
-    duration: 0.9,
-    floatY: [0, -8, 0],
+    delay: 0.4,
+    floatY: [0, -10, 0],
     floatDur: 5,
-    hideMobile: false,
+    showMobile: true,
   },
   {
     id: 2,
     label: "LOOK 02",
-    name: "Ankara set",
+    labelSize: "48px",
+    item: "Ankara two-piece",
     price: "\u00B5120",
-    size: "w-28 md:w-36",
-    style: { top: "5%", right: "6%" },
-    rotate: 6,
-    delay: 0.65,
-    duration: 1.0,
-    floatY: [0, 8, 0],
-    floatDur: 4.5,
-    hideMobile: false,
+    topColor: "#2B3D3D",
+    width: "120px",
+    style: { top: "6%", right: "4%" },
+    rotate: 7,
+    delay: 0.52,
+    floatY: [0, 10, 0],
+    floatDur: 6,
+    showMobile: true,
   },
   {
     id: 3,
     label: "LOOK 03",
-    name: "Thrifted blazer",
+    labelSize: "40px",
+    item: "Thrifted blazer",
     price: "\u00B545",
-    size: "w-40 md:w-48",
-    style: { top: "55%", left: "2%" },
+    topColor: "#3D3020",
+    width: "160px",
+    style: { top: "52%", left: "1%" },
     rotate: 5,
-    delay: 0.8,
-    duration: 1.1,
-    floatY: [0, -8, 0],
-    floatDur: 6,
-    hideMobile: false,
+    delay: 0.64,
+    floatY: [0, -10, 0],
+    floatDur: 4.5,
+    showMobile: true,
   },
   {
     id: 4,
     label: "LOOK 04",
-    name: "Printed midi",
+    labelSize: "44px",
+    item: "Printed midi",
     price: "\u00B5200",
-    size: "w-32 md:w-40",
-    style: { bottom: "10%", left: "20%" },
+    topColor: "#20283D",
+    width: "130px",
+    style: { bottom: "12%", left: "18%" },
     rotate: -4,
-    delay: 0.95,
-    duration: 0.85,
-    floatY: [0, 8, 0],
+    delay: 0.76,
+    floatY: [0, 10, 0],
     floatDur: 5.5,
-    hideMobile: false,
+    showMobile: false,
   },
   {
     id: 5,
     label: "LOOK 05",
-    name: "Silk cami",
+    labelSize: "40px",
+    item: "Silk cami",
     price: "\u00B560",
-    size: "w-28 md:w-36",
-    style: { top: "20%", right: "3%" },
-    rotate: -6,
-    delay: 1.1,
-    duration: 1.2,
-    floatY: [0, -8, 0],
-    floatDur: 4,
-    hideMobile: true,
+    topColor: "#3D2535",
+    width: "110px",
+    style: { top: "18%", right: "2%" },
+    rotate: -7,
+    delay: 0.88,
+    floatY: [0, -10, 0],
+    floatDur: 7,
+    showMobile: false,
   },
   {
     id: 6,
     label: "LOOK 06",
-    name: "Aso-oke detail",
+    labelSize: "44px",
+    item: "Aso-oke detail",
     price: "\u00B5350",
-    size: "w-36 md:w-44",
-    style: { bottom: "8%", right: "8%" },
-    rotate: 8,
-    delay: 1.25,
-    duration: 0.95,
-    floatY: [0, 8, 0],
+    topColor: "#253D2B",
+    width: "150px",
+    style: { bottom: "6%", right: "6%" },
+    rotate: 9,
+    delay: 1.0,
+    floatY: [0, 10, 0],
+    floatDur: 4,
+    showMobile: true,
+  },
+  {
+    id: 7,
+    label: "LOOK 07",
+    labelSize: "36px",
+    item: "Kente wrap",
+    price: "\u00B5180",
+    topColor: "#3D2B20",
+    width: "100px",
+    style: { top: "35%", left: "5%" },
+    rotate: 12,
+    delay: 1.12,
+    floatY: [0, -10, 0],
+    floatDur: 6.5,
+    showMobile: false,
+  },
+  {
+    id: 8,
+    label: "LOOK 08",
+    labelSize: "36px",
+    item: "Beaded top",
+    price: "\u00B595",
+    topColor: "#2B2040",
+    width: "115px",
+    style: { top: "30%", right: "5%" },
+    rotate: -5,
+    delay: 1.24,
+    floatY: [0, 10, 0],
     floatDur: 5.2,
-    hideMobile: true,
+    showMobile: false,
   },
 ];
 
@@ -93,27 +129,51 @@ const headlineWords = "Dress with intention.".split(" ");
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-[#2B2D42] overflow-hidden">
+    <section
+      className="relative min-h-screen overflow-hidden"
+      style={{ backgroundColor: "#212130" }}
+    >
       <div
-        className="absolute inset-0 z-[1] pointer-events-none"
+        className="pointer-events-none absolute z-0"
         style={{
+          width: "600px",
+          height: "600px",
+          borderRadius: "50%",
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(239,35,60,0.04) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(239,35,60,0.06) 0%, transparent 70%)",
+          top: "-10%",
+          left: "-5%",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute z-0"
+        style={{
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(61,61,85,0.8) 0%, transparent 70%)",
+          bottom: "-10%",
+          right: "-5%",
         }}
       />
 
       {cards.map((card) => (
         <motion.div
           key={card.id}
-          initial={{ y: 40, rotate: card.rotate }}
-          animate={{ y: 0, rotate: card.rotate }}
+          initial={{ opacity: 0, y: 60, rotate: card.rotate }}
+          animate={{ opacity: 1, y: 0, rotate: card.rotate }}
           transition={{
             delay: card.delay,
-            duration: card.duration,
+            duration: 0.9,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className={`absolute z-0 opacity-40 md:opacity-100 ${card.size} ${card.hideMobile ? "hidden md:block" : "block"}`}
-          style={card.style}
+          whileHover={{ scale: 1.05, rotate: 0, transition: { duration: 0.3 } }}
+          className={`absolute z-[5] cursor-default ${card.showMobile ? "" : "hidden md:block"}`}
+          style={{
+            width: `clamp(80px, ${card.width}, ${card.width})`,
+            ...card.style,
+          }}
         >
           <motion.div
             animate={{ y: card.floatY }}
@@ -123,43 +183,96 @@ export default function Hero() {
               ease: "easeInOut",
             }}
             className="w-full"
+            style={{
+              borderRadius: "16px",
+              overflow: "hidden",
+              boxShadow:
+                "0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+            }}
           >
-            <div className="w-full aspect-[3/4] bg-[#1e2030] rounded-t-xl flex flex-col items-center justify-center relative">
-              <span className="font-sans text-xs text-cadet opacity-40 tracking-widest uppercase">
+            <div
+              className="relative flex aspect-[3/4] items-center justify-center overflow-hidden"
+              style={{ backgroundColor: card.topColor }}
+            >
+              <span
+                className="font-serif select-none"
+                style={{
+                  fontSize: `clamp(28px, ${card.labelSize}, ${card.labelSize})`,
+                  color: "rgba(255,255,255,0.15)",
+                  letterSpacing: "0.05em",
+                }}
+              >
                 {card.label}
               </span>
-              <div className="absolute bottom-0 w-full h-px bg-red opacity-30" />
             </div>
-            <div className="bg-[#12131f] rounded-b-xl px-3 py-2 flex items-center justify-between">
-              <span className="font-sans text-xs text-ghost">{card.name}</span>
-              <span className="font-sans text-xs text-cadet opacity-60">
+
+            <div
+              style={{
+                backgroundColor: "#1A1A28",
+                padding: "10px 12px",
+                borderTop: "1px solid rgba(255,255,255,0.06)",
+              }}
+            >
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "11px",
+                  color: "#FAF7F2",
+                  fontWeight: 500,
+                  marginBottom: "2px",
+                }}
+              >
+                {card.item}
+              </p>
+              <p
+                className="font-sans"
+                style={{ fontSize: "10px", color: "#8D8FA8" }}
+              >
                 {card.price}
-              </span>
+              </p>
             </div>
           </motion.div>
         </motion.div>
       ))}
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-6">
+      <div
+        className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
+        style={{ pointerEvents: "auto" }}
+      >
         <motion.span
           initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 0.8, y: 0 }}
+          animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-sans text-xs tracking-[0.25em] uppercase text-red mb-8 opacity-80"
+          className="font-sans"
+          style={{
+            fontSize: "12px",
+            letterSpacing: "0.3em",
+            textTransform: "uppercase",
+            color: "#EF233C",
+            marginBottom: "24px",
+          }}
         >
           COMING SOON TO ACCRA
         </motion.span>
 
-        <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-ghost leading-none mb-6">
+        <h1
+          className="font-serif mb-5"
+          style={{
+            fontSize: "clamp(56px, 9vw, 120px)",
+            color: "#FAF7F2",
+            lineHeight: 1,
+            fontWeight: 400,
+          }}
+        >
           {headlineWords.map((word, i) => (
             <motion.span
               key={i}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 0.2 + i * 0.08,
-                duration: 0.6,
-                ease: "easeOut",
+                delay: 0.15 + i * 0.08,
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
               }}
               className="inline-block mr-[0.15em]"
             >
@@ -171,8 +284,15 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5, ease: "easeOut" }}
-          className="font-sans text-lg md:text-xl text-cadet max-w-md leading-relaxed mb-10"
+          transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+          className="font-sans"
+          style={{
+            fontSize: "clamp(17px, 1.6vw, 22px)",
+            color: "#8D8FA8",
+            lineHeight: 1.6,
+            maxWidth: "420px",
+            marginBottom: "40px",
+          }}
         >
           Discover outfits from your wardrobe
           <br />
@@ -180,12 +300,22 @@ export default function Hero() {
         </motion.p>
 
         <motion.button
-          initial={{ opacity: 0, y: 16, scale: 0.95 }}
+          initial={{ opacity: 0, y: 12, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.9, duration: 0.4, ease: "easeOut" }}
-          whileHover={{ scale: 1.03 }}
+          transition={{ delay: 0.85, duration: 0.4, ease: "easeOut" }}
+          whileHover={{ scale: 1.03, backgroundColor: "#D90429" }}
           whileTap={{ scale: 0.97 }}
-          className="bg-red hover:bg-crimson text-ghost font-sans font-semibold text-base rounded-full px-10 py-4 transition-colors duration-200 w-full max-w-xs mx-auto"
+          className="font-sans w-full cursor-pointer border-none font-semibold"
+          style={{
+            backgroundColor: "#EF233C",
+            color: "#FAF7F2",
+            padding: "16px 40px",
+            borderRadius: "100px",
+            fontSize: "16px",
+            letterSpacing: "0.03em",
+            maxWidth: "280px",
+            transition: "background-color 0.2s",
+          }}
         >
           Join the waitlist {"\u2192"}
         </motion.button>
