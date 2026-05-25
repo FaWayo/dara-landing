@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Weara — Dress with intention",
+  title: "Dara — Dress with intention",
   description:
     "Discover outfits from your wardrobe and the fashion around you.",
 };

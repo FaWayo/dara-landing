@@ -37,3 +37,7 @@ body {
 .animate-marquee {
     animation: marquee 20s linear infinite;
 }
+
+#waitlist input::placeholder {
+    color: rgba(250, 247, 242, 0.4);
+}

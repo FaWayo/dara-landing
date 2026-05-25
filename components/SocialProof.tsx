@@ -330,7 +330,7 @@ export default function SocialProof() {
             >
               &ldquo;I only shop where I can see the reviews.
               <br />
-              Weara brings that trust to the thrift market.&rdquo;
+              Dara brings that trust to the thrift market.&rdquo;
             </motion.p>
           </div>
         </div>

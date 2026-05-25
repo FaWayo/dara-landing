@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const ITEMS = [
   {
     Q: "Is this free for buyers?",
-    A: "Yes. Always.\nWeara is free for every woman who uses it.\nThe platform earns from sellers \u2014 never from buyers.",
+    A: "Yes. Always.\nDara is free for every woman who uses it.\nThe platform earns from sellers \u2014 never from buyers.",
   },
   {
     Q: "How do sellers get paid?",
@@ -17,12 +17,12 @@ const ITEMS = [
     A: "No. For thrift sellers, we come to you.\nWe photograph your pieces and list them ourselves.\nYou focus on sourcing. We handle the storefront.",
   },
   {
-    Q: "Where is Weara launching first?",
-    A: "Accra, Ghana. Then Lagos.\nIf you're on the waitlist, you hear first \u2014\nand we reach out personally.",
+    Q: "Where is Dara launching first?",
+    A: "We are starting small and intentional.\nJoin the waitlist and you will be among the first to know.",
   },
   {
-    Q: "When does it launch?",
-    A: "Soon. We're in the final stages of validation\nbefore we open to our first users.\nJoin the waitlist and you will be among the first\nto know \u2014 and the first to get in.",
+    Q: "When does Dara launch?",
+    A: "Soon. Join the waitlist and you will hear first \u2014 we reach out personally to everyone on the list.",
   },
 ];
 

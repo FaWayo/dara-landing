@@ -31,7 +31,7 @@ export default function Footer() {
                 className="font-serif text-warm mb-4"
                 style={{ fontSize: "clamp(28px, 3vw, 40px)" }}
               >
-                Weara
+                Dara
               </p>
               <p
                 className="font-sans text-muted max-w-xs"
@@ -88,7 +88,7 @@ export default function Footer() {
               className="font-sans text-muted/80 tracking-wide"
               style={{ fontSize: "12px" }}
             >
-              &copy; 2026 Weara. All rights reserved.
+              &copy; 2026 Dara. All rights reserved.
             </p>
 
             <a

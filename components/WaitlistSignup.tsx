@@ -1,175 +1,340 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+
+const SHEET_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "";
 
 const roles = [
-  { value: "shopper", label: "Shopper" },
-  { value: "brand", label: "Fashion Brand" },
-  { value: "thrift", label: "Thrift Seller" },
-  { value: "boutique", label: "Boutique" },
-];
-
-const proofCards = [
   {
-    tag: "SHOPPER",
-    text: "\u201CI save outfits constantly and never recreate them.\u201D",
+    id: "buyer" as const,
+    title: "Discover outfits",
+    desc: "Find styles from my wardrobe\nand sellers around me.",
   },
   {
-    tag: "RETURNEE",
-    text: "\u201CI\u2019ve wanted something like this since moving home.\u201D",
-  },
-  {
-    tag: "SELLER",
-    text: "\u201CMy clothes deserve more than disappearing stories.\u201D",
+    id: "seller" as const,
+    title: "Sell my pieces",
+    desc: "Reach buyers who already\nwant what I sell.",
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: 0.15 + i * 0.08, duration: 0.4, ease: "easeOut" as const },
-  }),
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 export default function WaitlistSignup() {
-  const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const [role, setRole] = useState<"buyer" | "seller" | null>(null);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [focused, setFocused] = useState(false);
+
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true });
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem("joinAs");
+    if (stored === "seller") {
+      setRole("seller");
+      sessionStorage.removeItem("joinAs");
+    } else if (stored === "buyer") {
+      setRole("buyer");
+      sessionStorage.removeItem("joinAs");
+    }
+  }, []);
+
+  const handleSubmit = async () => {
+    if (!email || !role) return;
+    setStatus("loading");
+
+    try {
+      await fetch(SHEET_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          role: role === "buyer" ? "Buyer" : "Seller",
+          email,
+        }),
+      });
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  const headline =
+    role === null ? "Be first into Dara." : role === "buyer" ? "You\u2019re in the right place." : "List your pieces. Be first.";
+
+  const subtext =
+    role === null
+      ? "Who are you joining as?"
+      : role === "buyer"
+        ? "Dara is launching soon.\nWe will reach out personally."
+        : "No monthly fees. No upfront cost.\nWe reach out to get you set up.";
+
+  const inputBorder = focused
+    ? "1.5px solid rgba(250,247,242,0.8)"
+    : "1.5px solid rgba(250,247,242,0.3)";
 
   return (
-    <section className="bg-red py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-        <div className="max-w-5xl mx-auto">
-          <div className="max-w-3xl">
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="text-warm tracking-tight mb-6"
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(48px, 7vw, 96px)",
-                fontWeight: 400,
-                lineHeight: 1,
-              }}
-            >
-              Dress differently.
-            </motion.h2>
+    <section
+      id="waitlist"
+      ref={sectionRef}
+      className="py-24 md:py-32"
+      style={{ backgroundColor: "#EF233C" }}
+    >
+      <div className="mx-auto max-w-3xl px-6 text-center md:px-12">
+        <motion.span
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mb-8 block font-sans text-xs uppercase tracking-[0.25em]"
+          style={{ color: "rgba(250,247,242,0.7)" }}
+        >
+          JOIN THE WAITLIST
+        </motion.span>
 
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
-              className="font-sans text-warm opacity-80 max-w-xl mb-10"
-              style={{
-                fontSize: "clamp(16px, 1.5vw, 20px)",
-                lineHeight: 1.6,
-              }}
-            >
-              Launching first in Accra.
-              <br />
-              Join early access to discover fashion, style your wardrobe, and help shape Weara.
-            </motion.p>
-          </div>
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
+          className="font-serif mb-4"
+          style={{
+            color: "#FAF7F2",
+            fontSize: "clamp(40px, 6vw, 80px)",
+            lineHeight: 1,
+          }}
+        >
+          {headline}
+        </motion.h2>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <p className="font-sans text-xs tracking-widest text-warm/60 uppercase mb-4">
-              Who are you?
-            </p>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+          className="mb-12 font-sans"
+          style={{
+            color: "rgba(250,247,242,0.75)",
+            fontSize: "clamp(15px, 1.4vw, 18px)",
+            lineHeight: 1.6,
+          }}
+        >
+          {subtext}
+        </motion.p>
 
-            <div className="flex flex-wrap gap-3 mb-6">
-              {roles.map((role) => (
-                <button
-                  key={role.value}
-                  onClick={() => setSelectedRole(role.value)}
-                  className={`font-sans text-sm px-5 py-2.5 rounded-full border transition-all duration-200 ${
-                    selectedRole === role.value
-                      ? "border-warm text-warm bg-warm/10"
-                      : "border-warm/30 text-warm/70 hover:border-warm/60 hover:text-warm"
-                  }`}
-                >
-                  {role.label}
-                </button>
-              ))}
-            </div>
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+          }}
+          className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-2"
+        >
+          {roles.map((r) => {
+            const selected = role === r.id;
 
-            <div className="flex flex-col md:flex-row gap-4 max-w-2xl">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 bg-transparent border border-warm/40 focus:border-warm text-warm font-sans px-5 py-3 rounded-full outline-none transition-colors placeholder:text-warm/50"
+            return (
+              <motion.button
+                key={r.id}
+                variants={fadeUp}
+                onClick={() => setRole(r.id)}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                type="button"
                 style={{
-                  fontSize: "16px",
+                  padding: "20px 24px",
+                  borderRadius: "12px",
+                  border: selected
+                    ? "1.5px solid rgba(250,247,242,0.9)"
+                    : "1.5px solid rgba(250,247,242,0.25)",
+                  backgroundColor: selected
+                    ? "rgba(250,247,242,0.18)"
+                    : "rgba(250,247,242,0.08)",
+                  cursor: "pointer",
+                  textAlign: "left",
+                  transition: "all 0.2s ease",
+                  position: "relative",
                 }}
-              />
-              <button
-                className="bg-warm hover:opacity-90 text-red font-sans font-semibold px-6 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shrink-0"
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 600,
+                onMouseEnter={(e) => {
+                  if (!selected) {
+                    e.currentTarget.style.border = "1.5px solid rgba(250,247,242,0.45)";
+                    e.currentTarget.style.backgroundColor = "rgba(250,247,242,0.12)";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!selected) {
+                    e.currentTarget.style.border = "1.5px solid rgba(250,247,242,0.25)";
+                    e.currentTarget.style.backgroundColor = "rgba(250,247,242,0.08)";
+                  }
                 }}
               >
-                Join Early Access {"\u2192"}
-              </button>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="mt-16"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {proofCards.map((card, i) => (
-                <motion.div
-                  key={i}
-                  custom={i}
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  whileHover={{ y: -4 }}
-                  className="border border-warm/10 rounded-xl p-5 transition-all duration-200"
+                <p
+                  className="font-sans mb-2 uppercase"
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.15em",
+                    color: "rgba(250,247,242,0.5)",
+                  }}
                 >
-                  <span className="font-sans text-xs tracking-widest text-warm uppercase mb-2 block">
-                    {card.tag}
-                  </span>
-                  <p className="font-sans text-sm text-warm/70 leading-relaxed">
-                    {card.text}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                  I WANT TO
+                </p>
+                <p
+                  className="font-serif mb-2"
+                  style={{ color: "#FAF7F2", fontSize: "20px" }}
+                >
+                  {r.title}
+                </p>
+                <p
+                  className="font-sans"
+                  style={{
+                    fontSize: "13px",
+                    color: "rgba(250,247,242,0.6)",
+                    lineHeight: 1.5,
+                    whiteSpace: "pre-line",
+                  }}
+                >
+                  {r.desc}
+                </p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="mt-12 flex flex-wrap gap-x-8 gap-y-2"
-          >
-            <span className="font-sans text-xs tracking-widest uppercase text-warm/50">
-              Launching in Accra first
-            </span>
-            <span className="font-sans text-xs tracking-widest uppercase text-warm/50">
-              Limited onboarding
-            </span>
-            <span className="font-sans text-xs tracking-widest uppercase text-warm/50">
-              Early members shape features
-            </span>
-          </motion.div>
-        </div>
+                <AnimatePresence>
+                  {selected && (
+                    <motion.span
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                      transition={{ duration: 0.2 }}
+                      style={{
+                        position: "absolute",
+                        top: "12px",
+                        right: "12px",
+                        width: "10px",
+                        height: "10px",
+                        borderRadius: "50%",
+                        backgroundColor: "#FAF7F2",
+                      }}
+                    />
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            );
+          })}
+        </motion.div>
+
+        <AnimatePresence mode="wait">
+          {role !== null && (
+            <motion.div
+              key="step3"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <div className="flex flex-col gap-3 md:flex-row md:gap-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+                  onFocus={() => setFocused(true)}
+                  onBlur={() => setFocused(false)}
+                  placeholder="your@email.com"
+                  className="w-full"
+                  style={{
+                    backgroundColor: "rgba(250,247,242,0.12)",
+                    border: inputBorder,
+                    borderRadius: "100px",
+                    padding: "16px 24px",
+                    color: "#FAF7F2",
+                    fontSize: "16px",
+                    outline: "none",
+                    fontFamily: "var(--font-sans)",
+                    transition: "border 0.2s ease",
+                  }}
+                />
+
+                <motion.button
+                  onClick={handleSubmit}
+                  disabled={status === "loading" || !email}
+                  whileHover={!status.includes("loading") && email ? { scale: 1.02 } : {}}
+                  whileTap={{ scale: 0.97 }}
+                  type="button"
+                  style={{
+                    backgroundColor: "#FAF7F2",
+                    color: "#EF233C",
+                    border: "none",
+                    borderRadius: "100px",
+                    padding: "16px 32px",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    fontFamily: "var(--font-sans)",
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                    transition: "all 0.2s ease",
+                    opacity: status === "loading" || !email ? 0.6 : 1,
+                  }}
+                >
+                  {status === "idle" && "Join Dara \u2192"}
+                  {status === "loading" && "Joining..."}
+                  {status === "success" && "You\u2019re in \u2713"}
+                  {status === "error" && "Try again"}
+                </motion.button>
+              </div>
+
+              <AnimatePresence>
+                {status === "success" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.4 }}
+                    className="font-sans mt-4"
+                    style={{
+                      fontSize: "14px",
+                      color: "rgba(250,247,242,0.85)",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {role === "seller"
+                      ? "You\u2019re on the seller list.\nWe\u2019ll reach out to get you set up \u2014\nno fees, no pressure."
+                      : "You\u2019re on the list.\nWe\u2019ll reach out personally before launch."}
+                  </motion.p>
+                )}
+
+                {status === "error" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.4 }}
+                    className="font-sans mt-4"
+                    style={{
+                      fontSize: "14px",
+                      color: "rgba(250,247,242,0.7)",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Something went wrong. Please try again.
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <p
+          className="font-sans mt-12"
+          style={{
+            fontSize: "12px",
+            color: "rgba(250,247,242,0.4)",
+            letterSpacing: "0.05em",
+          }}
+        >
+          No spam. No sharing your data. Just Dara.
+        </p>
       </div>
     </section>
   );

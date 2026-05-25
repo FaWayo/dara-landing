@@ -69,6 +69,14 @@ export default function SellerSection() {
   const ctaRef = useRef(null);
   const ctaInView = useInView(ctaRef, { once: true });
 
+  const handleSellerCTA = () => {
+    sessionStorage.setItem("joinAs", "seller");
+    const waitlist = document.getElementById("waitlist");
+    if (waitlist) {
+      waitlist.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
     <section className="bg-ink-mid py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
@@ -278,7 +286,10 @@ export default function SellerSection() {
           >
             Ready to reach the women already looking for what you sell?
           </p>
-          <button className="bg-red hover:bg-crimson text-warm font-sans font-semibold text-base px-8 py-4 rounded-full transition-colors duration-200 shadow-lg shrink-0 w-full md:w-auto">
+          <button
+            onClick={handleSellerCTA}
+            className="bg-red hover:bg-crimson text-warm font-sans font-semibold text-base px-8 py-4 rounded-full transition-colors duration-200 shadow-lg shrink-0 w-full md:w-auto cursor-pointer"
+          >
             List your pieces {"\u2192"}
           </button>
         </motion.div>

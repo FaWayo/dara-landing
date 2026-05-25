@@ -7,7 +7,7 @@ export const PALETTE = {
 } as const;
 
 export const HERO_COPY = {
-  TAG: "COMING SOON TO ACCRA",
+  TAG: "COMING SOON",
   HEADLINE: "Dress with intention.",
   SUBTEXT: "Discover outfits from your wardrobe and the fashion around you.",
   CTA: "Join the waitlist \u2192",
@@ -45,7 +45,7 @@ export const HOW_IT_WORKS_COPY = {
     {
       NUMBER: "02",
       TITLE: "Bridge the inspiration gap",
-      BODY: "Connect your Pinterest boards and saved posts. Weara matches your saved inspiration to pieces you own or pieces from real sellers near you. No more saving outfits you can never recreate.",
+      BODY: "Connect your Pinterest boards and saved posts. Dara matches your saved inspiration to pieces you own or pieces from real sellers near you. No more saving outfits you can never recreate.",
     },
     {
       NUMBER: "03",
@@ -55,7 +55,7 @@ export const HOW_IT_WORKS_COPY = {
     {
       NUMBER: "04",
       TITLE: "Discover sellers the algorithm hides",
-      BODY: "Thrift pieces from Accra markets and African brand drops shown inside your outfit suggestion \u2014 not buried under accounts with bigger followings.",
+      BODY: "Thrift pieces from local markets and African brand drops shown inside your outfit suggestion \u2014 not buried under accounts with bigger followings.",
     },
   ],
 };
@@ -87,7 +87,7 @@ export const SELLER_SECTION_COPY = {
 
 export const WAITLIST_COPY = {
   HEADLINE: "Be first.",
-  SUBTEXT: "Weara is launching in Accra first. Join the waitlist and we will reach out personally.",
+  SUBTEXT: "Dara is launching soon. Join the waitlist and we will reach out personally.",
   PLACEHOLDER: "your@email.com",
   CTA: "Join waitlist",
 };
@@ -96,16 +96,16 @@ export const SOCIAL_PROOF_COPY = {
   LABEL: "EARLY TESTERS SAY",
   QUOTES: [
     {
-      TEXT: "\u201CI have been looking for something like this since I moved back to Accra.\u201D",
+      TEXT: "\u201CI have been looking for something like this since I moved back.\u201D",
       AUTHOR: "Returnee, 32",
     },
     {
       TEXT: "\u201CMy Instagram boutique finally has a home that doesn\u2019t disappear every 24 hours.\u201D",
-      AUTHOR: "Curated thrift seller, Lagos",
+      AUTHOR: "Curated thrift seller",
     },
     {
       TEXT: "\u201CThe Pinterest problem is real. I save everything and recreate nothing. This fixes that.\u201D",
-      AUTHOR: "Creative, 27, Accra",
+      AUTHOR: "Creative, 27",
     },
   ],
   NOTE: "Quotes reflect early tester feedback. Names withheld by request.",
@@ -116,7 +116,7 @@ export const FAQ_COPY = {
   ITEMS: [
     {
       Q: "Is this free for buyers?",
-      A: "Yes. Always. Weara is free for every woman who uses it. The platform earns from sellers, not buyers.",
+      A: "Yes. Always. Dara is free for every woman who uses it. The platform earns from sellers, not buyers.",
     },
     {
       Q: "How do sellers get paid?",
@@ -127,8 +127,8 @@ export const FAQ_COPY = {
       A: "No. For thrift sellers, we photograph and list your pieces for you. You sell. We handle the rest.",
     },
     {
-      Q: "Where is Weara launching first?",
-      A: "Accra, Ghana. Lagos next.",
+      Q: "Where is Dara launching first?",
+      A: "Soon.",
     },
     {
       Q: "When does it launch?",
@@ -144,5 +144,5 @@ export const FOOTER_COPY = {
     { LABEL: "Twitter/X", HREF: "#" },
   ],
   EMAIL: "hello@weara.co",
-  COPYRIGHT: "\u00A9 2026 Weara",
+  COPYRIGHT: "\u00A9 2026 Dara",
 };

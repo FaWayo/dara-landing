@@ -271,9 +271,10 @@ export default function Hero() {
             textTransform: "uppercase",
             color: "#EF233C",
             marginBottom: "24px",
+            fontWeight: "bold",
           }}
         >
-          COMING SOON TO ACCRA
+          COMING SOON
         </motion.span>
 
         <h1
@@ -329,11 +330,12 @@ export default function Hero() {
           transition={{ delay: 0.85, duration: 0.4, ease: "easeOut" }}
           whileHover={{ scale: 1.03, backgroundColor: "#D90429" }}
           whileTap={{ scale: 0.97 }}
-          onClick={() =>
+          onClick={() => {
+            sessionStorage.setItem("joinAs", "buyer");
             document
               .getElementById("waitlist")
-              ?.scrollIntoView({ behavior: "smooth" })
-          }
+              ?.scrollIntoView({ behavior: "smooth", block: "center" });
+          }}
           className="font-sans w-full cursor-pointer border-none font-semibold"
           style={{
             backgroundColor: "#EF233C",

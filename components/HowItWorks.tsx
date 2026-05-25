@@ -15,7 +15,7 @@ const steps = [
   {
     number: "02",
     title: "Bridge the inspiration gap",
-    body: "Connect your Pinterest boards. Weara matches what you saved to pieces you own \u2014 or sellers near you. No more saving outfits you can never recreate.",
+    body: "Connect your Pinterest boards. Dara matches what you saved to pieces you own \u2014 or sellers near you. No more saving outfits you can never recreate.",
     reversed: true,
     imageSrc: "/images/how-it-works/step-02.png",
   },
@@ -29,7 +29,7 @@ const steps = [
   {
     number: "04",
     title: "Discover sellers the algorithm hides",
-    body: "Thrift pieces from Accra markets and African brand drops shown inside your outfit suggestion \u2014 not buried under accounts with bigger followings.",
+    body: "Thrift pieces from local markets and African brand drops shown inside your outfit suggestion \u2014 not buried under accounts with bigger followings.",
     reversed: true,
     imageSrc: "/images/how-it-works/step-04.png",
   },

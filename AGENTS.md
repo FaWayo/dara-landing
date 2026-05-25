@@ -1,6 +1,6 @@
-# WEARA — AI Build Context
+# DARA — AI Build Context
 
-## What Weara Is
+## What Dara Is
 
 A two-sided AI styling marketplace for African women.
 One surface. One session.
@@ -59,7 +59,7 @@ She does not shop in categories.
 She is one person dressing for one life.
 Pinterest gives her the dream. Instagram buries the sellers.
 Her wardrobe holds the pieces but not the logic.
-Weara closes all three gaps in one session.
+Dara closes all three gaps in one session.
 
 ---
 
@@ -83,7 +83,7 @@ Two types:
 
 Kantamanto thrift sellers:
 - Persistent storefront that never disappears after 24 hours
-- Weara photographs and lists their inventory (managed-listing)
+- Dara photographs and lists their inventory (managed-listing)
 - Mobile-money-native payouts — MoMo, Telecel Cash
 - Customers arrive already styled and self-qualified
 - Visibility that does not depend on follower count
@@ -221,7 +221,7 @@ Photography:
    - The disappearing inventory: story gone in 24 hours,
      contact lost in camera roll
 
-3. How Weara Works (buyer)
+3. How Dara Works (buyer)
    Headline: "Your inspiration. Your wardrobe. The market around you."
    Four steps:
    - Upload your wardrobe
@@ -249,7 +249,7 @@ Photography:
    - Is this free for buyers? Yes. Always.
    - How do sellers get paid? Mobile money. Within 48 hours.
    - Do I need to list my own items? No. We do it for you.
-   - Where is Weara launching first? Accra, Ghana.
+   - Where is Dara launching first? Accra, Ghana.
    - When does it launch? Soon. Join the waitlist to hear first.
 
 8. Footer
@@ -257,7 +257,7 @@ Photography:
    your market, and your people."
    Links: Instagram, Twitter/X
    Email: hello@weara.co
-   © 2026 Weara
+   © 2026 Dara
 
 ---
 
